@@ -8,16 +8,35 @@ const products = [
   { name: "Sneakers", price: 300, category: "clothing" },
 ];
 
-// Case #1 ------------------------------------------------------------------
+// CASE #1 ------------------------------------------------------------------
+
+// filter
 const cheapestProduct = products.filter((item) => item.price < 200);
 console.log(`Products on sale for 200nok or less:`, cheapestProduct);
 
+// map
 const ProductNames = products.map((item) => item.name);
 console.log(`Products in stock: ${ProductNames}`);
 
+// map, filter
 const electronicProducts = products
   .filter((item) => item.category === "electronics")
   .map((item) => item.name);
 console.log(`Electronic Products in stock: ${electronicProducts}`);
 
-const sellTheseToPoshPeeps = products.some((item) =>)
+// some, filter, map
+let sellTheseToPoshPeeps = [];
+if (products.some((item) => item.price >= 1000)) {
+  sellTheseToPoshPeeps = products
+    .filter((item) => item.price >= 1000)
+    .map((item) => item.name);
+} else sellTheseToPoshPeeps = [];
+console.log(`Luxury Products: ${sellTheseToPoshPeeps}`);
+
+// reduce
+// prettier-ignore
+const totalWorthOfProducts = products.reduce(
+  (accumulated, currentValue) => accumulated + currentValue.price, 0);
+console.log(`Total worth of inventory: ${totalWorthOfProducts}`);
+
+// CASE #2------------------------------------------------------------------------
